@@ -467,8 +467,26 @@ public class ProjectEuler {
     	System.out.println(largest + " goes on for: " + largestChain);
     }
     
-    //20 x 20 lattice path
+     public static BigInteger latticePaths(int i, int j) {
+    	if(i == 0 || j == 0)
+    		return BigInteger.valueOf(1);
+    	else return latticePaths(i - 1, j).add(latticePaths(i, j - 1));
+    }
+    
+    //after I looked up the lattice paths
+    public static BigInteger betterLatticePaths(int size) {
+    	BigInteger x = BigInteger.valueOf(size);
+    	BigInteger answer = factorial(x.multiply(BigInteger.valueOf(2))).divide(factorial(x).multiply(factorial(x)));
+    	return answer;
+    }
+//    20 x 20 lattice path (How many paths?) pretty hard one
+//    hints: 1 x 1 = 2 | 2 x 2 = 6 | 3 x 3 = 20 | 4 x 4 = 70 | 5 x 5 = 252
+//    vertex_paths(i, j) = vertex_paths(i-1, j) + vertex_paths(i, j-1)
+//    recursion???????
+//    recursion!!!!!!!
     public static void prob15() {
-    	System.out.println("hmm");
+    	int size = 20;
+    	BigInteger answer = latticePaths(size, size); //represents an array of vertices
+    	System.out.println(answer);
     }
 }
