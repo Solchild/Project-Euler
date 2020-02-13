@@ -6,15 +6,8 @@ public class ProjectEuler {
     public static void main(String args[]) {
     	Scanner scanIt = new Scanner(System.in);
     	String problem;
-//    	double num = 999167;
-//    	for(int i = 0; i < 1000; i++) {
-//    		num = collatzNum(num);
-//    		System.out.println(num);
-//    	}
     	System.out.println("Enter the problem you want.");
     	problem = scanIt.nextLine();
-    	
-    	
     	
     	switch(problem) {
 	    	case "3":
@@ -56,8 +49,11 @@ public class ProjectEuler {
 	    	case "15":
 	    		prob15();
 	    		break;
+		case: "16":
+			prob16();
+			break;
 	    	default:
-	    		System.out.println("Wrong!");
+	    		System.out.println("Invalid Input");
 	    		
     	}
     }
@@ -488,5 +484,20 @@ public class ProjectEuler {
     	int size = 20;
     	BigInteger answer = latticePaths(size, size); //represents an array of vertices
     	System.out.println(answer);
+    }
+	//    Sum of the digits 2^1000
+//    Ex. 2^15 = 3 + 2 + 7 + 6 + 8 = 26
+    public static void prob16() {
+    	int power = 1000;
+    	BigInteger number = BigInteger.valueOf(2).pow(power);	
+    	BigInteger answer = BigInteger.ZERO;
+    	for(int i = 0; number.compareTo(BigInteger.ZERO) > 0; i++) {
+    		BigInteger old = answer;
+    		answer = answer.add(number.mod(BigInteger.TEN));
+    		
+    		System.out.println(old.toString() + " + " + number.mod(BigInteger.TEN) + " = " + answer.toString());
+    		number = number.divide(BigInteger.TEN);
+    	}
+    	System.out.println(answer.toString());
     }
 }
